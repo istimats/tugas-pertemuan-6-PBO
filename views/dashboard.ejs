@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <title>Curd nd js</title>
+    <style>
+        body {
+    background-color: #fafafa;
+    font-family: 'Noto Sans JP', sans-serif;
+}
+
+table {
+    border-collapse: collapse;
+    width: 80%;
+    margin-left: 10%;
+}
+
+th, td {
+    padding: 8px;
+    text-align: center;
+}
+
+th {
+    background-color: #4CAF50;
+    color: white;
+}
+
+tr:nth-child(even) {
+    background-color: #f2f2f2;
+}
+
+a {
+    text-decoration: none;
+    color: #4CAF50;
+}
+
+a:hover {
+    background-color: #ddd;
+}
+a[type=hapus]{
+    color: red;
+}
+
+button[type=button] {
+    background-color: #4CAF50;
+    color: white;
+    padding: 12px 20px;
+    border: none;
+    border-radius: 4px;
+    margin-left: 10%;
+    margin-top: 20px;
+    cursor: pointer;
+}
+button[type=button] a {
+    background-color: #4CAF50;
+    color: white;
+    
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+button[type=button] a:hover {
+    background-color: #45a049;
+}
+h1{
+    text-align: center;
+}
+
+.logout {
+    position: absolute;
+    right: 20px;
+    top: 20px;
+    background-color: #4CAF50;
+    color: white;
+    padding: 12px 20px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+.logout:hover {
+    background-color: #45a049;
+}
+
+
+    </style>
+</head>
+<body>
+    <h1>Tabel Data User</h1>
+    <table>
+        <tr>
+            <th>ID</th>
+            <th>NAMA</th>
+            <th>EMAIL</th>
+            <th>TELEPON</th>
+            <th>AKSI</th>
+            <th></th>
+        </tr>
+        <tr>
+            <%pengguna.forEach(pengguna => { %>
+        </tr>
+        <tr>
+            <td><%= pengguna.id %></td>
+                <td><%= pengguna.nama_lengkap %></td>
+                <td><%= pengguna.email %></td>
+                <td><%= pengguna.nomor_telepon %></td>
+                <td><a href="/edit/<%= pengguna.id %>">Edit</a>  |  <a type="hapus" href="/delete/<%= pengguna.id %>" onclick="return hapus('<%= pengguna.id %>')">Hapus</a></td>
+
+                
+        </tr>
+        <%}); %>
+    </table>
+    <button type="button"><a href="/create">+</a></button>
+    
+        <button class="logout" type="submit" onclick="return logout()">Logout</button>
+    
+    
+</body>
+<script>
+    
+
+    function hapus(id){
+        if(confirm('apakah anda yakin ingin menghapus data ini?')){
+            window.location.href = '/';   
+        } else {
+            alert('data tidak jadi di hapus');
+            return false;
+        }
+    }
+    function logout(){
+        if(confirm('apakah anda yakin ingin logout?')){
+            window.location.href = '/logout';   
+        } else {
+            alert('anda tidak jadi logout');
+            return false;
+        }
+    }
+</script>
+
+</html>
